@@ -1,6 +1,7 @@
 import random
 import secrets
 import string
+from colorama import Fore, Style
 
 
 def choiceChar(Alphabet: str, numberChar):
@@ -10,8 +11,9 @@ def choiceChar(Alphabet: str, numberChar):
     return letters
 
 
-def passworGenerator(length: int = 4):
-    print("Este generador crea contraseña de 8 caracteres de longitud.")
+def passworGenerator(length: int = 5):
+    print(Fore.YELLOW +
+          ("Este generador crea contraseñas de 12 caracteres de longitud."))
 
     vowels = "aeiou"
     numbers = "123456789"
@@ -21,18 +23,21 @@ def passworGenerator(length: int = 4):
     try:
         if length >= 4:
             password = choiceChar(string.ascii_letters,
-                                  length) + choiceChar(vowels, 3) + choiceChar(characters, 3) + choiceChar(numbers, 3)
+                                  length) + choiceChar(vowels, 1) + choiceChar(characters, 3) + choiceChar(numbers, 3)
 
             random.shuffle(password)
 
             password_string = "".join(password)
 
-            print(f"Tu nueva contraseña es: {password_string}")
+            print(Fore.GREEN +
+                  f"Tu nueva contraseña es: {password_string}".center(60))
         else:
-            print("Para una contraseña segura deber ser mayor la longitud.")
+            print(Fore.BLUE + "Para una contraseña segura deber ser mayor la longitud.")
 
     except Exception as a:
-        print(f"Ingresa un número, por favor. {a}")
+        print(Fore.RED + f"Ingresa un número, por favor. {a}")
+
+    print(Style.RESET_ALL)
 
 
 if __name__ == "__main__":
